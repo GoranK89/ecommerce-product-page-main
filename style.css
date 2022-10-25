@@ -1,0 +1,101 @@
+:root {
+  /*Primary*/
+  --orange: hsl(26, 100%, 55%);
+  --paleOrange: hsl(25, 100%, 94%);
+
+  /* Neutral */
+  --veryDarkBlue: hsl(220, 13%, 13%);
+  --darkgrayishBlue: hsl(219, 9%, 45%);
+  --grayishBlue: hsl(220, 14%, 75%);
+  --lightGrayishBlue: hsl(223, 64%, 98%);
+  --white: hsl(0, 0%, 100%);
+  --overlayBlack: hsl(0, 0%, 0%);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0 auto;
+  font-family: 'Kumbh Sans', sans-serif;
+  font-size: 1.6rem;
+}
+
+/***********************************/
+/* NAVBAR */
+/***********************************/
+
+.navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 2rem 20rem;
+}
+
+.nav-links_wrapper {
+  display: flex;
+  gap: 4rem;
+  margin-left: 6rem;
+  margin-right: auto;
+}
+
+.nav-link,
+.nav-link:visited {
+  text-decoration: none;
+  color: var(--darkgrayishBlue);
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-link:hover,
+.nav-link:active {
+  color: var(--veryDarkBlue);
+}
+
+/* Create a transparent border, then override it with a colored one on hover, otherwise it draws a border on hover (and shifts the links) */
+
+.nav-link::after,
+.nav-link:hover::after {
+  content: '';
+  display: block;
+  position: relative;
+  top: 3rem;
+  border: 2px solid transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+  border: 2px solid var(--orange);
+}
+
+.cart-profile_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+#cart-icon {
+  cursor: pointer;
+}
+
+#customer-avatar {
+  height: 50px;
+  width: auto;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+}
+
+#customer-avatar:hover,
+#customer-avatar:active {
+  cursor: pointer;
+  border: 2px solid var(--orange);
+  border-radius: 50%;
+}
