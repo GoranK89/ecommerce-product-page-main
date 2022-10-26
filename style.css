@@ -24,6 +24,7 @@ html {
 
 body {
   margin: 0 auto;
+  height: 110vh;
   font-family: 'Kumbh Sans', sans-serif;
   font-size: 1.6rem;
 }
@@ -33,7 +34,7 @@ body {
 /***********************************/
 
 .navbar {
-  width: 100%;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   padding: 2rem 20rem;
@@ -42,8 +43,7 @@ body {
 .nav-links_wrapper {
   display: flex;
   gap: 4rem;
-  margin-left: 6rem;
-  margin-right: auto;
+  margin: 0 auto 0 6rem;
 }
 
 .nav-link,
@@ -98,4 +98,83 @@ body {
   cursor: pointer;
   border: 2px solid var(--orange);
   border-radius: 50%;
+}
+
+/***********************************/
+/* PRODUCT PAGE */
+/***********************************/
+
+/* Light box */
+.product-page_wrapper {
+  max-width: 144rem;
+  margin: 0 auto;
+  margin-bottom: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10rem;
+  padding: 2rem;
+}
+
+.light-box_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.product-img {
+  width: 100%;
+  border-radius: 14px;
+}
+
+.light-box-thumbnail_container {
+  display: flex;
+  justify-content: space-between;
+}
+.product-img-thumb {
+  width: 130px;
+  border-radius: 14px;
+}
+
+/* Product description */
+.product-description_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-brand-text {
+  color: var(--orange);
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+h1 {
+  letter-spacing: 0.6px;
+}
+
+.product-description-text {
+  color: var(--darkgrayishBlue);
+}
+
+.product-price {
+}
+
+.product-choose-quantity {
+}
+
+.btn-add-to-cart {
+  border: none;
+  background-color: var(--orange);
+  color: var(--white);
+  font-weight: 700;
+  padding: 1rem 5rem;
+  border-radius: 5px;
+}
+
+/***********************************/
+/* MEDIA QUERRIES */
+/***********************************/
+@media (max-width: 700px) {
 }
