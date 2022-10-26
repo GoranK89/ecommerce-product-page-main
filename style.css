@@ -27,6 +27,7 @@ body {
   height: 110vh;
   font-family: 'Kumbh Sans', sans-serif;
   font-size: 1.6rem;
+  background-color: var(--white);
 }
 
 /***********************************/
@@ -34,10 +35,12 @@ body {
 /***********************************/
 
 .navbar {
+  max-width: 144rem;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  padding: 2rem 20rem;
+  padding: 2rem 0 3rem 0;
+  border-bottom: 1px solid var(--grayishBlue);
 }
 
 .nav-links_wrapper {
@@ -66,7 +69,7 @@ body {
   content: '';
   display: block;
   position: relative;
-  top: 3rem;
+  top: 4.4rem;
   border: 2px solid transparent;
   transition: all 0.3s ease-in-out;
 }
@@ -105,21 +108,21 @@ body {
 /***********************************/
 
 /* Light box */
+
 .product-page_wrapper {
   max-width: 144rem;
   margin: 0 auto;
   margin-bottom: 4rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  justify-content: space-between;
   align-items: center;
-  gap: 10rem;
-  padding: 2rem;
+  column-gap: 12rem;
 }
 
 .light-box_wrapper {
   display: flex;
   flex-direction: column;
+  padding: 10rem 0 10rem 10rem;
   gap: 3rem;
 }
 
@@ -133,44 +136,136 @@ body {
   justify-content: space-between;
 }
 .product-img-thumb {
-  width: 130px;
+  width: 120px;
   border-radius: 14px;
+  border: 2px solid transparent;
+}
+
+.product-img-thumb:hover,
+.product-img-thumb:active {
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 /* Product description */
 .product-description_wrapper {
   display: flex;
   flex-direction: column;
+  gap: 4rem;
+  padding-right: 12rem;
+}
+
+.product-title_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .product-brand-text {
   color: var(--orange);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   text-transform: uppercase;
   font-weight: 700;
 }
 
 h1 {
+  font-size: 5rem;
   letter-spacing: 0.6px;
 }
 
 .product-description-text {
   color: var(--darkgrayishBlue);
+  line-height: 2.6rem;
+  letter-spacing: 0.1px;
+  font-size: 1.8rem;
 }
 
 .product-price {
+  font-size: 3rem;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.product-price::after {
+  position: absolute;
+  content: '50%';
+  background-color: var(--paleOrange);
+  padding: 0.4rem 1rem;
+  color: var(--orange);
+  font-size: 1.6rem;
+  border-radius: 5px;
+  /* Center the discount block */
+  right: 68%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.product-price::before {
+  position: absolute;
+  content: '$250.00';
+  padding: 0.4rem 1rem 0.4rem 0;
+  color: var(--grayishBlue);
+  font-size: 1.6rem;
+  text-decoration: line-through;
+  top: 100%;
+}
+
+.quantity-adc-btn_wrapper {
+  display: flex;
+  gap: 2rem;
 }
 
 .product-choose-quantity {
+  background-color: var(--lightGrayishBlue);
+  font-weight: 700;
+  font-size: 1.8rem;
+  padding: 1.4rem 2rem;
+  display: flex;
+  gap: 5rem;
+  align-items: center;
+  border-radius: 5px;
 }
 
-.btn-add-to-cart {
+.quantity-select-btn {
+  display: block;
+}
+
+.quantity-select-btn:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.btn-adc {
+  position: relative;
+  width: 55%;
+  height: auto;
   border: none;
+  cursor: pointer;
   background-color: var(--orange);
   color: var(--white);
   font-weight: 700;
-  padding: 1rem 5rem;
   border-radius: 5px;
+  box-shadow: 0px 12px 40px -8px var(--orange);
+  transition: all ease-in-out 0.25s;
+}
+
+.btn-adc::before {
+  content: url('images/icon-cart.svg');
+  position: absolute;
+  filter: invert(100%) sepia(13%) saturate(7500%) hue-rotate(196deg)
+    brightness(115%) contrast(113%);
+  right: 68%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.btn-adc:hover {
+  opacity: 0.6;
+}
+
+.btn-adc:hover,
+.btn-adc:active {
+  opacity: 0.6;
 }
 
 /***********************************/
