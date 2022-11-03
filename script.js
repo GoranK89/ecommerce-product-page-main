@@ -2,20 +2,13 @@
 
 /* Cart functionality */
 const cartIcon = document.getElementById('cart-icon');
+const cartDropdown = document.getElementById('cart-dropdown_wrapper');
 
 cartIcon.addEventListener('click', () => {
-  cartIcon.insertAdjacentHTML(
-    'afterend',
-    `
-    <div id="cart-dropdown_wrapper">
-     <p>Cart</p>
-     <p>Your cart is empty</p>
-    </div>
-    `
-  );
+  cartDropdown.classList.toggle('hidden');
 });
 
-/* Add active border on thumbnail images */
+/* Lightbox functionality */
 const bigProductImg = document.querySelector('.big-product-img');
 const thumbnailWrapper = document.querySelector(
   '.light-box-thumbnail_container'
@@ -30,4 +23,15 @@ thumbnailProductImgs.forEach(img => {
     img.classList.toggle('active-img-thumb');
     bigProductImg.src = img.src.replace(/-thumbnail/g, '');
   });
+});
+
+const quanityContainer = document.querySelector('.product-choose-quantity');
+const btnPlus = document.querySelector('.plus');
+const btnMinus = document.querySelector('.minus');
+const selectAmmount = document.querySelector('.item-quantity');
+
+let quantity = 1;
+
+quanityContainer.addEventListener('click', e => {
+  const target = e.target;
 });
