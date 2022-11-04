@@ -45,7 +45,10 @@
         <a class="nav-link" href="#">Contact</a>
       </div>
       <div class="cart-profile_wrapper">
-        <img id="cart-icon" alt="cart icon" src="images/icon-cart.svg" />
+        <div class="cart-icon_wrapper">
+          <span class="items-in-cart-count">0</span>
+          <img id="cart-icon" alt="cart icon" src="images/icon-cart.svg" />
+        </div>
         <div id="cart-dropdown_wrapper" class="hidden">
           <p class="cart-title">Cart</p>
           <div class="item-in-cart">
@@ -55,7 +58,11 @@
               src="images/image-product-1-thumbnail.jpg"
             />
             <div class="cart-price-title-box">
-              <p>Fall Limited Edition Sneakers $125.00 x 3 $375.00</p>
+              <p>
+                Fall Limited Edition Sneakers $125.00 x
+                <span id="cart-quantity">1</span>
+                <b id="cart-price">$375.00</b>
+              </p>
             </div>
 
             <img
@@ -64,6 +71,7 @@
               src="images/icon-delete.svg"
             />
           </div>
+          <p class="empty-cart-msg hidden">Your cart is empty</p>
           <button class="btn-checkout">Checkout</button>
         </div>
         <img
