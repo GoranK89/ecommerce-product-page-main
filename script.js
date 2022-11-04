@@ -62,11 +62,9 @@ quantityWrapper.addEventListener('click', e => {
   selectItemQuantity.textContent = quantity;
   if (clicked === btnPlus && quantity < maxItems) {
     selectItemQuantity.textContent = quantity += 1;
-    itemsInCartCount.textContent = quantity;
   }
   if (clicked === btnMinus && !quantity <= 0) {
     selectItemQuantity.textContent = quantity -= 1;
-    itemsInCartCount.textContent = quantity;
   }
   if (!clicked) return;
 });
@@ -77,6 +75,7 @@ btnAddToCart.addEventListener('click', () => {
     cartQuantity.textContent = quantity;
     cartPrice.textContent = `$${CalculatePrice()}.00`;
     ShowCartContent();
+    itemsInCartCount.textContent = quantity;
   }
   if (quantity <= 0) RemoveCartContent();
 });
@@ -84,6 +83,7 @@ btnAddToCart.addEventListener('click', () => {
 removeItemsInCart.addEventListener('click', RemoveCartContent);
 
 /* Lightbox */
+const lightBoxWrapper = document.querySelector('.light-box_wrapper');
 const bigProductImg = document.querySelector('.big-product-img');
 const thumbnailWrapper = document.querySelector(
   '.light-box-thumbnail_container'
@@ -98,4 +98,9 @@ thumbnailProductImgs.forEach(img => {
     img.classList.toggle('active-img-thumb');
     bigProductImg.src = img.src.replace(/-thumbnail/g, '');
   });
+});
+
+bigProductImg.addEventListener('click', () => {
+  lightBoxWrapper.classList.add('modal');
+  lightBoxWrapper.classList.add('overlay');
 });
