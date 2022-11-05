@@ -53,6 +53,30 @@ const CalculatePrice = function () {
   return price;
 };
 
+const OpenLightbox = function () {
+  lbWrapper.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+  lbBigProductImg.src = bigProductImg.src;
+};
+
+const CloseLightbox = function () {
+  lbWrapper.classList.add('hidden');
+  overlay.classList.add('hidden');
+  bigProductImg.src = lbBigProductImg.src;
+};
+
+const ChangeThumbImg = function (thumbnails, replaceMainImg) {
+  thumbnails.forEach(img => {
+    img.addEventListener('click', () => {
+      thumbnails.forEach(img => {
+        img.classList.remove('active-img-thumb');
+      });
+      img.classList.toggle('active-img-thumb');
+      replaceMainImg.src = img.src.replace(/-thumbnail/g, '');
+    });
+  });
+};
+
 window.addEventListener('load', RemoveCartContent);
 cartIcon.addEventListener('click', ToggleCartDropdown);
 
@@ -82,25 +106,31 @@ btnAddToCart.addEventListener('click', () => {
 
 removeItemsInCart.addEventListener('click', RemoveCartContent);
 
-/* Lightbox */
-const lightBoxWrapper = document.querySelector('.light-box_wrapper');
+/* Preview content variables*/
 const bigProductImg = document.querySelector('.big-product-img');
 const thumbnailWrapper = document.querySelector(
   '.light-box-thumbnail_container'
 );
 const thumbnailProductImgs = document.querySelectorAll('.product-img-thumb');
 
-thumbnailProductImgs.forEach(img => {
-  img.addEventListener('click', () => {
-    thumbnailProductImgs.forEach(img => {
-      img.classList.remove('active-img-thumb');
-    });
-    img.classList.toggle('active-img-thumb');
-    bigProductImg.src = img.src.replace(/-thumbnail/g, '');
-  });
-});
+/* Lightbox(lb) variables */
+const lbWrapper = document.querySelector('.light-box_wrapper-modal');
+const overlay = document.querySelector('.overlay');
+const lbBigProductImg = document.querySelector('.big-product-img-modal');
+const lbThumbnailProductImgs = document.querySelectorAll(
+  '.product-img-thumb-modal'
+);
+const closeLightbox = document.querySelector('.close-lightbox');
 
-bigProductImg.addEventListener('click', () => {
-  lightBoxWrapper.classList.add('modal');
-  lightBoxWrapper.classList.add('overlay');
-});
+/* Preview content functionality */
+ChangeThumbImg(thumbnailProductImgs, bigProductImg);
+
+/* Lighbox functionality */
+ChangeThumbImg(lbThumbnailProductImgs, lbBigProductImg);
+bigProductImg.addEventListener('click', OpenLightbox);
+closeLightbox.addEventListener('click', CloseLightbox);
+overlay.addEventListener('click', CloseLightbox);
+
+/* Slider */
+const nextBtn = document.querySelector('.next-container');
+const prevBtn = document.querySelector('.prev-container');
