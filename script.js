@@ -20,6 +20,22 @@ const btnMinus = document.querySelector('.minus');
 const selectItemQuantity = document.querySelector('.item-quantity');
 const btnAddToCart = document.querySelector('.btn-adc');
 
+/* Preview content variables*/
+const bigProductImg = document.querySelector('.big-product-img');
+const thumbnailWrapper = document.querySelector(
+  '.light-box-thumbnail_container'
+);
+const thumbnailProductImgs = document.querySelectorAll('.product-img-thumb');
+
+/* Lightbox(lb) variables */
+const lbWrapper = document.querySelector('.light-box_wrapper-modal');
+const overlay = document.querySelector('.overlay');
+const lbBigProductImg = document.querySelector('.big-product-img-modal');
+const lbThumbnailProductImgs = document.querySelectorAll(
+  '.product-img-thumb-modal'
+);
+const closeLightbox = document.querySelector('.close-lightbox');
+
 const maxItems = 50;
 const itemPrice = 125;
 
@@ -65,12 +81,16 @@ const CloseLightbox = function () {
   bigProductImg.src = lbBigProductImg.src;
 };
 
+const RemoveActiveClass = function (remove) {
+  remove.forEach(img => {
+    img.classList.remove('active-img-thumb');
+  });
+};
+
 const ChangeThumbImg = function (thumbnails, replaceMainImg) {
   thumbnails.forEach(img => {
     img.addEventListener('click', () => {
-      thumbnails.forEach(img => {
-        img.classList.remove('active-img-thumb');
-      });
+      RemoveActiveClass(thumbnails);
       img.classList.toggle('active-img-thumb');
       replaceMainImg.src = img.src.replace(/-thumbnail/g, '');
     });
@@ -106,22 +126,6 @@ btnAddToCart.addEventListener('click', () => {
 
 removeItemsInCart.addEventListener('click', RemoveCartContent);
 
-/* Preview content variables*/
-const bigProductImg = document.querySelector('.big-product-img');
-const thumbnailWrapper = document.querySelector(
-  '.light-box-thumbnail_container'
-);
-const thumbnailProductImgs = document.querySelectorAll('.product-img-thumb');
-
-/* Lightbox(lb) variables */
-const lbWrapper = document.querySelector('.light-box_wrapper-modal');
-const overlay = document.querySelector('.overlay');
-const lbBigProductImg = document.querySelector('.big-product-img-modal');
-const lbThumbnailProductImgs = document.querySelectorAll(
-  '.product-img-thumb-modal'
-);
-const closeLightbox = document.querySelector('.close-lightbox');
-
 /* Preview content functionality */
 ChangeThumbImg(thumbnailProductImgs, bigProductImg);
 
@@ -134,3 +138,36 @@ overlay.addEventListener('click', CloseLightbox);
 /* Slider */
 const nextBtn = document.querySelector('.next-container');
 const prevBtn = document.querySelector('.prev-container');
+
+let curImg = 0;
+const maxImg = lbThumbnailProductImgs.length;
+
+const ShowActiveThumbnail = function () {
+  for (let i = 0; i < lbThumbnailProductImgs.length; i++) {
+    lbThumbnailProductImgs[i].classList.remove('active-img-thumb');
+    lbThumbnailProductImgs[curImg].classList.add('active-img-thumb');
+  }
+};
+
+const NextImg = function () {
+  if (curImg === maxImg - 1) {
+    curImg = 0;
+  } else {
+    curImg++;
+  }
+  lbBigProductImg.src = `images/image-product-${curImg + 1}.jpg`;
+  ShowActiveThumbnail();
+};
+
+const PrevImg = function () {
+  if (curImg === 0) {
+    curImg = maxImg - 1;
+  } else {
+    curImg--;
+  }
+  lbBigProductImg.src = `images/image-product-${curImg + 1}.jpg`;
+  ShowActiveThumbnail();
+};
+
+nextBtn.addEventListener('click', NextImg);
+prevBtn.addEventListener('click', PrevImg);
