@@ -181,3 +181,18 @@ modalNextBtn.addEventListener('click', NextImg);
 modalPrevBtn.addEventListener('click', PrevImg);
 mobileNextBtn.addEventListener('click', NextImg);
 mobilePrevBtn.addEventListener('click', PrevImg);
+
+// Mobile nav
+const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
+const mobileMenuContent = document.querySelector('.nav-links_wrapper');
+const closeMenuMobile = document.querySelector('.close-menu-icon');
+const overlayMobile = document.querySelector('.overlay-mobile');
+
+mobileMenuIcon.addEventListener('click', () => {
+  mobileMenuContent.classList.add('nav-open');
+  overlay.classList.remove('hidden');
+});
+closeMenuMobile.addEventListener('click', () => {
+  mobileMenuContent.classList.remove('nav-open');
+  overlay.classList.add('hidden');
+});
