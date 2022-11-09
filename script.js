@@ -22,6 +22,7 @@ const btnAddToCart = document.querySelector('.btn-adc');
 
 /* Preview content variables*/
 const bigProductImg = document.querySelector('.big-product-img');
+const bigMobileImg = document.querySelector('.big-product-img-mobile');
 const thumbnailWrapper = document.querySelector(
   '.light-box-thumbnail_container'
 );
@@ -129,15 +130,20 @@ removeItemsInCart.addEventListener('click', RemoveCartContent);
 /* Preview content functionality */
 ChangeThumbImg(thumbnailProductImgs, bigProductImg);
 
-/* Lighbox functionality */
+/* LIGHTBOX functionality */
 ChangeThumbImg(lbThumbnailProductImgs, lbBigProductImg);
-bigProductImg.addEventListener('click', OpenLightbox);
+bigProductImg.addEventListener('click', () => {
+  OpenLightbox();
+  CloseCartDropdown();
+});
 closeLightbox.addEventListener('click', CloseLightbox);
 overlay.addEventListener('click', CloseLightbox);
 
-/* Slider */
-const nextBtn = document.querySelector('.next-container');
-const prevBtn = document.querySelector('.prev-container');
+const nextBtns = document.querySelectorAll('.next-container');
+const prevBtns = document.querySelectorAll('.prev-container');
+
+const [modalNextBtn, mobileNextBtn] = nextBtns;
+const [modalPrevBtn, mobilePrevBtn] = prevBtns;
 
 let curImg = 0;
 const maxImg = lbThumbnailProductImgs.length;
@@ -156,6 +162,7 @@ const NextImg = function () {
     curImg++;
   }
   lbBigProductImg.src = `images/image-product-${curImg + 1}.jpg`;
+  bigMobileImg.src = `images/image-product-${curImg + 1}.jpg`;
   ShowActiveThumbnail();
 };
 
@@ -166,8 +173,11 @@ const PrevImg = function () {
     curImg--;
   }
   lbBigProductImg.src = `images/image-product-${curImg + 1}.jpg`;
+  bigMobileImg.src = `images/image-product-${curImg + 1}.jpg`;
   ShowActiveThumbnail();
 };
 
-nextBtn.addEventListener('click', NextImg);
-prevBtn.addEventListener('click', PrevImg);
+modalNextBtn.addEventListener('click', NextImg);
+modalPrevBtn.addEventListener('click', PrevImg);
+mobileNextBtn.addEventListener('click', NextImg);
+mobilePrevBtn.addEventListener('click', PrevImg);
